@@ -14,14 +14,29 @@ let dummyReviews = [
 ];
 
 app.get("/reviews/:courseCode", async (req, res) => {
-    const course_code = req.params.courseCode.toUpperCase;
-
+    const course_code = req.params.courseCode.toUpperCase();
+    const filtered = dummyReviews.filter(r => r.course_code === course_code);
+    const avg = filtered.length > 0 ? 
+    (filtered.reduce((sum, r) => sum + r.overall_rating, 0) / filtered.length).toFixed(1)
+    : 0;
     res.json({
         course: course_code,
-        average: 5,
-        reviews: 3,
+        average: avg,
+        reviews: filtered,
     });
-    res.send("Hello World!");
+});
+
+app.post("/reviews", async (req, res) => {
+    const { course_code, overall_rating, comment } = req.body;
+    const newReview = {
+        id: dummyReviews.length + 1,
+        course_code: course_code.toUpperCase,
+        overall_rating: overall_rating,
+        comment: comment, 
+    }
+    dummyReviews.push(newReview);
+    console.log("Review added to database");
+    res.json(newReview);
 });
 
 app.listen(port, () => console.log(`Server running on: http://localhost:${port}`));
