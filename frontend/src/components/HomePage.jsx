@@ -48,7 +48,7 @@ function HomePage() {
         )}
 
         {courseData && !loading && (
-          <div className="animate-in fade-in duration-500">
+          <div className="animate-in fade-in duration-500 w-full">
             {/* Course Header Stat */}
             <div className="bg-white p-6 rounded-xl shadow-md border-l-8 border-red-600 mb-6 flex justify-between items-center">
               <div>
@@ -76,7 +76,6 @@ function HomePage() {
                         </div>
                         <p className="text-gray-700 leading-relaxed italic">"{rev.comment}"</p>
                     </div>
-                    <button onClick={() => navigate("/ReviewForm", {state: {courseCode: courseData.course}})} className="mt-2 text-red-600 font-bold hover:underline self">Add a review!</button>
                   </div>
                 ))
               ) : (
@@ -86,6 +85,7 @@ function HomePage() {
                 </div>
               )}
             </div>
+            <button onClick={() => navigate("/ReviewForm", {state: {courseCode: courseData.course}})} className="mt-2 text-red-600 font-bold hover:underline w-full">Add a review!</button>
           </div>
         )}
       </div>
