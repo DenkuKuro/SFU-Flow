@@ -60,6 +60,7 @@ app.get("/api/course-list", (req, res) => {
 app.get("/reviews/:courseCode", async (req, res) => {
     const course_code = req.params.courseCode.toUpperCase();
     const filtered = dummyReviews.filter(r => r.course_code === course_code);
+    console.log(filtered);
     const avg = filtered.length > 0 ? 
     (filtered.reduce((sum, r) => sum + r.overall_rating, 0) / filtered.length).toFixed(1)
     : 0;
@@ -72,9 +73,10 @@ app.get("/reviews/:courseCode", async (req, res) => {
 
 app.post("/reviews", async (req, res) => {
     const { course_code, overall_rating, comment } = req.body;
+    console.log(course_code);
     const newReview = {
         id: dummyReviews.length + 1,
-        course_code: course_code.toUpperCase,
+        course_code: course_code.toUpperCase(),
         overall_rating: overall_rating,
         comment: comment, 
     }
