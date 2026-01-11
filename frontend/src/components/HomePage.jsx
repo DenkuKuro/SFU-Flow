@@ -67,13 +67,16 @@ function HomePage() {
             <div className="space-y-4">
               {courseData.reviews.length > 0 ? (
                 courseData.reviews.map((rev) => (
-                  <div key={rev.id} className="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
-                    <div className="flex items-center mb-2">
-                      <span className="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded">
-                        Rating: {rev.overall_rating}/5
-                      </span>
+                  <div className='flex flex-col w-full'>              
+                    <div key={rev.id} className="bg-white p-5 rounded-lg shadow-sm border border-gray-100">
+                        <div className="flex items-center mb-2">
+                        <span className="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-1 rounded">
+                            Rating: {rev.overall_rating}/5
+                        </span>
+                        </div>
+                        <p className="text-gray-700 leading-relaxed italic">"{rev.comment}"</p>
                     </div>
-                    <p className="text-gray-700 leading-relaxed italic">"{rev.comment}"</p>
+                    <button onClick={() => navigate("/ReviewForm", {state: {courseCode: courseData.course}})} className="mt-2 text-red-600 font-bold hover:underline self">Add a review!</button>
                   </div>
                 ))
               ) : (
