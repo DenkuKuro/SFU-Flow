@@ -9,8 +9,10 @@ const SearchBar = ({ allCourses, onSearch }) => {
     setQuery(value);
 
     if (value.length > 1) { // Start suggesting after 2 characters
+      const normalize = (str) => str.replace(/\s+/g, '').toUpperCase();
+      const normalizedValue = normalize(value);
       const filtered = allCourses
-        .filter(course => course.includes(value.toUpperCase()))
+        .filter(course => normalize(course).includes(normalizedValue))
         .slice(0, 10); // LIMIT to 10 for performance
       setSuggestions(filtered);
     } else {

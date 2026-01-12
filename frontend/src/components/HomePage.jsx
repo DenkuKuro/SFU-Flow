@@ -32,8 +32,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-10 text-gray-800">
-      <div className="max-w-3xl mx-auto">
+    <div className="min-h-screen w-screen bg-gray-50 p-4 md:p-10 text-gray-800">
         <header className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-red-700 mb-2">SFU Course Insight</h1>
           <p className="text-gray-600">Search for any SFU course to see student feedback.</p>
@@ -88,7 +87,6 @@ function HomePage() {
             <button onClick={() => navigate("/ReviewForm", {state: {courseCode: courseData.course}})} className="mt-2 text-red-600 font-bold hover:underline w-full">Add a review!</button>
           </div>
         )}
-      </div>
     </div>
   );
 }
